@@ -66,9 +66,7 @@ public class DatabaseHandler extends Configs{
 
                 resultSet = preparedStatement.executeQuery();
 
-            }catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            }catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -78,6 +76,27 @@ public class DatabaseHandler extends Configs{
         }
 
         return resultSet;
+    }
+
+
+    public void insertTask(Task task){
+        String insert = "INSERT INTO " + Const.TASKS_TABLE + "(" + Const.USERS_ID + "," + Const.TASKS_DATE + ","
+                + Const.TASKS_DESCRIPTION + "," + Const.TASKS_TASK + ")" + "VALUES(?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+            preparedStatement.setInt(1,12);
+            preparedStatement.setTimestamp(2,task.getDatecreated());
+            preparedStatement.setString(3,task.getDescription());
+            preparedStatement.setString(4,task.getTask());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

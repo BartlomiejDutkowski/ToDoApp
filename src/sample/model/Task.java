@@ -1,8 +1,10 @@
 package sample.model;
 
 
+import java.sql.Timestamp;
+
 public class Task {
-    private String datecreated;
+    private Timestamp datecreated;
     private String description;
     private String task;
 
@@ -10,7 +12,7 @@ public class Task {
 
     }
 
-    public Task(String datecreated, String description, String task) {
+    public Task(Timestamp datecreated, String description, String task) {
         this.datecreated = datecreated;
         this.description = description;
         this.task = task;
@@ -18,9 +20,9 @@ public class Task {
 
 
 
-    public String getDatecreated() { return datecreated; }
+    public Timestamp getDatecreated() { return datecreated; }
 
-    public void setDatecreated(String datecreated) {
+    public void setDatecreated(Timestamp datecreated) {
         this.datecreated = datecreated;
     }
 
