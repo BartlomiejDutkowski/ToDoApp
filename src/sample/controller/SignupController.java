@@ -67,7 +67,7 @@ public class SignupController {
 
         User user = new User(name, lastName, userName, password, location, gender);
 
-            databaseHandler.signUpUser(user);
+        databaseHandler.signUpUser(user);
 
     }
 }

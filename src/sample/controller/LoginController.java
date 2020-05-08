@@ -1,5 +1,8 @@
 package sample.controller;
 
+import sample.animations.Shaker;
+
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -7,11 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.Database.DatabaseHandler;
+import sample.model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -33,13 +39,56 @@ public class LoginController {
     @FXML
     private JFXButton loginSignupButton;
 
+    private DatabaseHandler databaseHandler;
+
     @FXML
     void initialize() {
 
-        String loginText = loginUsername.getText().trim();
-        String loginPwd  = loginPassword.getText().trim();
+        databaseHandler = new DatabaseHandler();
 
 
+
+        loginButton.setOnAction(event -> {
+
+            String loginText = loginUsername.getText().trim();
+            String loginPwd = loginPassword.getText().trim();
+
+            User user = new User();
+            user.setUserName(loginText);
+            user.setPassword(loginPwd);
+
+            ResultSet userRow = databaseHandler.getUser(user);
+
+
+            int counter = 0;
+
+            try{
+                while (userRow.next()) {
+                    counter++;
+                    String name = userRow.getString("firstname");
+
+                    System.out.println("Czesc " + name);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            if (counter == 1){
+
+                showAddItemScreen();
+
+            }else {
+                Shaker userNameShaker = new Shaker(loginUsername);
+                Shaker passwordShaker = new Shaker(loginPassword);
+                userNameShaker.shake();
+                passwordShaker.shake();
+
+            }
+
+        });
 
 
         loginSignupButton.setOnAction(event -> {
@@ -63,19 +112,27 @@ public class LoginController {
 
         });
 
-        loginButton.setOnAction(event -> {
-            if (loginText.equals("") || !loginPwd.equals("")) {
-                loginUser(loginText, loginPwd);
-            }else{
-                System.out.println("error login in user");
-            }
-
-        });
 
     }
 
-    private void loginUser(String userName, String password) {
-        //Chcek in the batabase if user exists,if
-        //we take them to AddItem Screen
+    private void showAddItemScreen() {
+        //Take users to AddIttem screen
+        loginSignupButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/addItem.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
 }

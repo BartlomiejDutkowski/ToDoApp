@@ -1,24 +1,26 @@
 package sample.model;
 
+
 public class Task {
-    private long datecreated;
+    private String datecreated;
     private String description;
     private String task;
 
     public Task() {
+
     }
 
-    public Task(long datecreated, String description, String task) {
+    public Task(String datecreated, String description, String task) {
         this.datecreated = datecreated;
         this.description = description;
         this.task = task;
     }
 
-    public long getDatecreated() {
-        return datecreated;
-    }
 
-    public void setDatecreated(long datecreated) {
+
+    public String getDatecreated() { return datecreated; }
+
+    public void setDatecreated(String datecreated) {
         this.datecreated = datecreated;
     }
 

@@ -1,16 +1,17 @@
 package sample.Database;
 
+import sample.model.Task;
 import sample.model.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseHandler extends Configs{
     Connection dbConnection;
+    private DatabaseHandler databaseHandler;
 
-   public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    private Connection connection;
+
+    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://"+ dbHost + ":"
                 +dbPort + "/"
                 +dbName + "?serverTimezone=UTC"
@@ -46,5 +47,42 @@ public class DatabaseHandler extends Configs{
             e.printStackTrace();
         }
     }
+
+    public ResultSet getUser(User user) {
+        ResultSet resultSet =null;
+
+
+        if (!user.getUserName().equals("") || !user.getPassword().equals("")) {
+            String query = "SELECT * FROM " + Const.USERS_TABLE + " WHERE "
+                    + Const.USERS_USERNAME + " =? " + " AND " + Const.USERS_PASSWORD
+                    + " =? ";
+
+            // select all from users where username="user" and password="password"
+
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1,user.getUserName());
+                preparedStatement.setString(2,user.getPassword());
+
+                resultSet = preparedStatement.executeQuery();
+
+            }catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            System.out.println("Please enter your credentials");
+
+        }
+
+        return resultSet;
+    }
+
+
+
+
+
 
 }

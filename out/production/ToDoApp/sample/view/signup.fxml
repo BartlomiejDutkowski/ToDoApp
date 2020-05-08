@@ -32,7 +32,7 @@
       <JFXTextField fx:id="signUpLastName" focusColor="#9a0007" layoutX="231.0" layoutY="155.0" prefHeight="36.0" prefWidth="239.0" promptText="Last Name" unFocusColor="#424242" />
       <JFXTextField fx:id="signUpUsername" focusColor="#9a0007" layoutX="231.0" layoutY="200.0" prefHeight="36.0" prefWidth="239.0" promptText="User Name" unFocusColor="#424242" />
       <JFXTextField fx:id="signUpLocation" focusColor="#9a0007" layoutX="231.0" layoutY="308.0" prefHeight="36.0" prefWidth="239.0" promptText="Location" unFocusColor="#424242" />
-      <JFXCheckBox fx:id="signUpCheckBoxMale" layoutX="231.0" layoutY="284.0" text="Male" textFill="#616060" />
+      <JFXCheckBox fx:id="signUpCheckBoxMale" layoutX="231.0" layoutY="284.0" text="Male" textFill="#030303" />
       <JFXCheckBox fx:id="signUpCheckBoxFemale" layoutX="327.0" layoutY="284.0" text="Female" />
       <JFXPasswordField fx:id="signUpPassword" layoutX="231.0" layoutY="243.0" prefHeight="30.0" prefWidth="239.0" promptText="Password" />
       <JFXButton fx:id="signUpButton" layoutX="233.0" layoutY="356.0" prefHeight="30.0" prefWidth="239.0" style="-fx-background-color: #424242;" text="Sign up" textFill="WHITE" />
