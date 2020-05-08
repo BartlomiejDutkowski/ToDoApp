@@ -42,11 +42,6 @@ public class AddItemController {
     @FXML
     void initialize() {
 
-
-
-
-
-
         addButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Shaker buttonShaker = new Shaker(addButton);
             buttonShaker.shake();
@@ -92,25 +87,6 @@ public class AddItemController {
             }
         });
 
-        taskListButton.setOnAction(event -> {
-
-            taskListButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/taskList.fxml"));
-
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        });
     }
 
 
