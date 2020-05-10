@@ -21,6 +21,9 @@ import java.util.ResourceBundle;
 
 public class AddItemController {
 
+    public static int userId;
+
+
     @FXML
     private AnchorPane rootPane;
 
@@ -74,6 +77,11 @@ public class AddItemController {
 
                 AnchorPane formPane = FXMLLoader.load(getClass().getResource("/sample/view/addItemForm.fxml"));
 
+                AddItemController.userId=getUserId();
+
+                // AddItemFormController addItemFormController = new AddItemFormController();
+                // addItemFormController.setUserId(getUserId());
+
                 FadeTransition rootTransition = new FadeTransition(Duration.millis(2000),formPane);
                 rootTransition.setFromValue(0f);
                 rootTransition.setToValue(1f);
@@ -90,4 +98,14 @@ public class AddItemController {
     }
 
 
+    public void setUserId(int userId) {
+
+        this.userId = userId;
+        System.out.println("User Id to " + this.userId);
+
+    }
+    public int getUserId(){
+        return this.userId;
+    }
 }
+

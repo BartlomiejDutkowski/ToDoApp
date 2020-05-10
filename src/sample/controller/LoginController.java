@@ -21,6 +21,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController {
+
+    private  int userId;
+
     @FXML
     private ResourceBundle resources;
 
@@ -66,6 +69,7 @@ public class LoginController {
                 while (userRow.next()) {
                     counter++;
                     String name = userRow.getString("firstname");
+                    userId = userRow.getInt("userid");
 
                     System.out.println("Czesc " + name);
                 }
@@ -130,9 +134,13 @@ public class LoginController {
 
         Parent root = loader.getRoot();
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage.setScene(new Scene(root));
+
+        AddItemController addItemController = loader.getController();
+        addItemController.setUserId(userId);
+
+
+        stage.showAndWait();
     }
 
 }

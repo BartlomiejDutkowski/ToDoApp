@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ListController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="700.0">
+         <children>
+            <AnchorPane layoutY="-6.0" prefHeight="76.0" prefWidth="700.0" style="-fx-background-color: d32f2f;">
+               <children>
+                  <Label alignment="CENTER" layoutX="238.0" layoutY="3.0" prefHeight="70.0" prefWidth="225.0" style="-fx-background-color: d32f2f;" text="My 2DO's" textFill="WHITE">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="successLabel" layoutX="492.0" layoutY="25.0" text="Task Added Successfully!" textFill="WHITE" visible="false">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="todosButton" layoutX="537.0" layoutY="348.0" prefHeight="34.0" prefWidth="153.0" style="-fx-background-color: #ff6659;" text="My 2Do's (3)" textFill="#434040" visible="false" />
+            <JFXListView fx:id="listTask" layoutX="270.0" layoutY="76.0" prefHeight="316.0" prefWidth="423.0" style="-fx-background-color: #ffff;">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </JFXListView>
+            <AnchorPane layoutX="14.0" layoutY="76.0" prefHeight="316.0" prefWidth="263.0">
+               <children>
+                  <JFXTextField fx:id="listTaskField" focusColor="#d3180e" layoutX="14.0" layoutY="57.0" prefHeight="26.0" prefWidth="235.0" promptText="Task" unFocusColor="#7a1ab2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="listDescriptionField" layoutX="14.0" layoutY="113.0" prefHeight="51.0" prefWidth="235.0" promptText="Description">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="listSaveTaskButton" layoutX="73.0" layoutY="188.0" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #d32f2f;" text="Save Task" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
