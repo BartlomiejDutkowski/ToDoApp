@@ -15,11 +15,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import sample.Database.DatabaseHandler;
 import sample.model.Task;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class ListController {
@@ -38,31 +42,63 @@ public class ListController {
 
     private ObservableList<Task> tasks;
 
+    private DatabaseHandler databaseHandler;
+
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
 
-        System.out.println("UserID from cellcontroller: " + AddItemController.userId);
+        tasks = FXCollections.observableArrayList();
 
-        Task myTask = new Task();
-        myTask.setTask("umyj samochod");
-        myTask.setDescription("Dzis!");
-        myTask.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
+        databaseHandler = new DatabaseHandler();
+        ResultSet resultSet = databaseHandler.getTasksByUser(AddItemController.userId);
 
-        Task myTask2 = new Task();
-        myTask2.setTask("umyj podłogi");
-        myTask2.setDescription("Dzis!");
-        myTask2.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
+        while (resultSet.next()) {
+            Task task = new Task();
+            task.setTaskId(resultSet.getInt("taskid"));
+            task.setTask(resultSet.getString("task"));
+            task.setDatecreated(resultSet.getTimestamp("datecreated"));
+            task.setDescription(resultSet.getString("description"));
 
-
-        tasks =FXCollections.observableArrayList();
-
-        tasks.addAll(myTask, myTask2);
-
+            tasks.addAll(task);
+            //System.out.println("User tasks: " + resultSet.getString("task"));
+        }
 
         listTask.setItems(tasks);
         listTask.setCellFactory(CellController -> new CellController());
 
+        listSaveTaskButton.setOnAction(event -> {
+            addNewTask();
+        });
 
+
+    }
+
+    public void addNewTask(){
+
+            if (!listTaskField.getText().equals("") || !listDescriptionField.getText().equals("")){
+
+                Task myNewTask = new Task();
+
+                Calendar calendar = Calendar.getInstance();
+
+                java.sql.Timestamp timestamp = new java.sql.Timestamp(calendar.getTimeInMillis());
+
+                myNewTask.setUserId(AddItemController.userId);
+                myNewTask.setTask(listTaskField.getText().trim());
+                myNewTask.setDescription(listDescriptionField.getText().trim());
+                myNewTask.setDatecreated(timestamp);
+
+                databaseHandler.insertTask(myNewTask);
+
+                listTaskField.setText("");
+                listDescriptionField.setText("");
+
+                try {
+                    initialize();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
 
     }
 

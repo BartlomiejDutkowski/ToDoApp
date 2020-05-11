@@ -20,12 +20,7 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-        ResultSet resultSet = databaseHandler.getTasksByUser(5);
 
-        while (resultSet.next()) {
-            System.out.println("User tasks: " + resultSet.getString("task"));
-        }
     }
 
 

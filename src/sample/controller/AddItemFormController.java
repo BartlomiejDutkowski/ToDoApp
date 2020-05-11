@@ -100,6 +100,7 @@ public class AddItemFormController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
+
                 });
 
                 // System.out.println("Task został dodany prawidlowo");
