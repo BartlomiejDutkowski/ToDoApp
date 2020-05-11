@@ -58,8 +58,7 @@ public class CellController extends JFXListCell<Task> {
             taskLabel.setText(myTask.getTask());
             dateLabel.setText(myTask.getDatecreated().toString());
             descriptionLabel.setText(myTask.getDescription());
-            iconImageView.setVisible(true);
-            deleteButton.setVisible(true);
+
 
             setText(null);
             setGraphic(rootAnchorPane);

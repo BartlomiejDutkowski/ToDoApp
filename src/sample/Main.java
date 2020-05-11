@@ -7,17 +7,25 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 
+import java.sql.ResultSet;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("view/list.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("view/list.fxml"));
         primaryStage.setTitle("2DO");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
 
 
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        ResultSet resultSet = databaseHandler.getTasksByUser(5);
+
+        while (resultSet.next()) {
+            System.out.println("User tasks: " + resultSet.getString("task"));
+        }
     }
 
 
