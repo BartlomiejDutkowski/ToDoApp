@@ -34,17 +34,17 @@
             </JFXListView>
             <AnchorPane layoutX="14.0" layoutY="76.0" prefHeight="316.0" prefWidth="263.0">
                <children>
-                  <JFXTextField fx:id="listTaskField" focusColor="#d3180e" layoutX="14.0" layoutY="57.0" prefHeight="26.0" prefWidth="235.0" promptText="Task" text="Zadanie" unFocusColor="#7a1ab2">
+                  <JFXTextField fx:id="listTaskField" focusColor="#d3180e" layoutX="14.0" layoutY="57.0" prefHeight="26.0" prefWidth="235.0" promptText="Zadanie">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="listDescriptionField" layoutX="14.0" layoutY="113.0" prefHeight="51.0" prefWidth="235.0" promptText="Description" text="Opis">
+                  <JFXTextField fx:id="listDescriptionField" focusColor="#d3180e" layoutX="14.0" layoutY="113.0" prefHeight="51.0" prefWidth="235.0" promptText="Opis">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton fx:id="listSaveTaskButton" layoutX="73.0" layoutY="188.0" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #d32f2f;" text="Zapisz" textFill="WHITE">
+                  <JFXButton fx:id="listSaveTaskButton" layoutX="73.0" layoutY="188.0" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #424242;" text="Zapisz" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

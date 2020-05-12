@@ -20,10 +20,6 @@ public class DatabaseHandler extends Configs{
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         dbConnection = DriverManager.getConnection(connectionString,dbUser, dbPass);
-
-
-
-
         return dbConnection;
     }
 
@@ -88,8 +84,6 @@ public class DatabaseHandler extends Configs{
                     + Const.USERS_USERNAME + " =? " + " AND " + Const.USERS_PASSWORD
                     + " =? ";
 
-            // select all from users where username="user" and password="password"
-
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1,user.getUserName());
@@ -102,7 +96,7 @@ public class DatabaseHandler extends Configs{
             }
 
         }else{
-            System.out.println("Please enter your credentials");
+            System.out.println("Wpisz swoje dane");
 
         }
 
@@ -132,8 +126,6 @@ public class DatabaseHandler extends Configs{
 
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-
-            System.out.println("From DBhandler UserId: " + task.getUserId());
 
             preparedStatement.setInt(1, task.getUserId());
             preparedStatement.setTimestamp(2,task.getDatecreated());

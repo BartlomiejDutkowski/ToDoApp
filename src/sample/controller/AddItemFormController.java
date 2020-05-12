@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 public class AddItemFormController {
 
 
-
     private int userId;
 
     private DatabaseHandler databaseHandler;
@@ -58,9 +57,8 @@ public class AddItemFormController {
             String taskText = taskField.getText().trim();
             String taskDescription = descriptionField.getText().trim();
 
-            if (!taskText.equals("") || !taskDescription.equals("")){
+            if (!taskText.equals("") || !taskDescription.equals("")) {
 
-                System.out.println("User Id: " + AddItemController.userId);
                 task.setUserId(AddItemController.userId);
                 task.setDatecreated(timestamp);
                 task.setDescription(taskDescription);
@@ -79,7 +77,7 @@ public class AddItemFormController {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                todosButton.setText("My 2Do's: " + "(" + taskNumber + ")");
+                todosButton.setText("Twoje zadania : " + "(" + taskNumber + ")");
 
 
                 taskField.setText("");
@@ -87,7 +85,6 @@ public class AddItemFormController {
 
                 todosButton.setOnAction(event1 -> {
 
-                    todosButton.getScene().getWindow().hide();
 
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/sample/view/list.fxml"));
@@ -102,30 +99,14 @@ public class AddItemFormController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
+                    todosButton.getScene().getWindow().hide();
 
                 });
 
-                // System.out.println("Task został dodany prawidlowo");
 
-            }else{
+            } else {
                 System.out.println("Nic nie zostalo dodane");
             }
-
-
-
         });
-
-
-
     }
-
-    public int getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-        System.out.println(this.userId);
-    }
-
 }

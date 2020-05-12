@@ -37,6 +37,9 @@ public class AddItemController {
     private ImageView addButton;
 
     @FXML
+    private ImageView addListButton;
+
+    @FXML
     private Label notTaskLabel;
 
     @FXML
@@ -46,53 +49,26 @@ public class AddItemController {
     void initialize() {
 
         addButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            Shaker buttonShaker = new Shaker(addButton);
-            buttonShaker.shake();
-
-            FadeTransition fadeTransition = new FadeTransition(Duration.millis(2000), addButton);
-            FadeTransition labelTransition = new FadeTransition(Duration.millis(2000),notTaskLabel);
-
-            System.out.println("Added Clicked!");
-            addButton.relocate(0,20);
-            notTaskLabel.relocate(0,70);
-
-
-            addButton.setOpacity(0);
-            notTaskLabel.setOpacity(0);
-
-            fadeTransition.setFromValue(1f);
-            fadeTransition.setToValue(0f);
-            fadeTransition.setCycleCount(1);
-            fadeTransition.setAutoReverse(false);
-            fadeTransition.play();
-
-            labelTransition.setFromValue(1f);
-            labelTransition.setToValue(0f);
-            labelTransition.setCycleCount(1);
-            labelTransition.setAutoReverse(false);
-            labelTransition.play();
-
 
             try {
-
                 AnchorPane formPane = FXMLLoader.load(getClass().getResource("/sample/view/addItemForm.fxml"));
-
-                AddItemController.userId=getUserId();
-
-                // AddItemFormController addItemFormController = new AddItemFormController();
-                // addItemFormController.setUserId(getUserId());
-
-                FadeTransition rootTransition = new FadeTransition(Duration.millis(2000),formPane);
-                rootTransition.setFromValue(0f);
-                rootTransition.setToValue(1f);
-                rootTransition.setCycleCount(1);
-                rootTransition.setAutoReverse(false);
-                rootTransition.play();
-
+                AddItemController.userId = getUserId();
                 rootPane.getChildren().setAll(formPane);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        addListButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            try {
+
+                AnchorPane formPane = FXMLLoader.load(getClass().getResource("/sample/view/list.fxml"));
+                rootPane.getChildren().setAll(formPane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         });
 
     }
@@ -101,10 +77,10 @@ public class AddItemController {
     public void setUserId(int userId) {
 
         this.userId = userId;
-        System.out.println("User Id to " + this.userId);
 
     }
-    public int getUserId(){
+
+    public int getUserId() {
         return this.userId;
     }
 }

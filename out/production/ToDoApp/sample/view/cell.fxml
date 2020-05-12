@@ -9,17 +9,17 @@
 
 <AnchorPane fx:id="rootAnchorPane" prefHeight="90.0" prefWidth="400.0" style="-fx-background-color: #fffff0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="iconImageView" fitHeight="49.0" fitWidth="67.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iconImageView" fitHeight="32.0" fitWidth="38.0" layoutX="26.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/icon_tasks.png" />
          </image>
       </ImageView>
-      <Label fx:id="taskLabel" layoutX="73.0" layoutY="14.0" prefHeight="32.0" prefWidth="255.0" text="Task">
+      <Label fx:id="taskLabel" layoutX="26.0" layoutY="14.0" prefHeight="32.0" prefWidth="255.0" text="Zadanie">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="descriptionLabel" layoutX="73.0" layoutY="48.0" prefHeight="32.0" prefWidth="255.0" text="Description">
+      <Label fx:id="descriptionLabel" layoutX="73.0" layoutY="48.0" prefHeight="32.0" prefWidth="255.0" text="Opis">
          <font>
             <Font size="16.0" />
          </font>

@@ -8,17 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddItemFormController">
     <children>
-        <JFXTextField fx:id="taskField" focusColor="#d3180e" layoutX="197.0" layoutY="107.0" prefHeight="51.0" prefWidth="307.0" promptText="Task" unFocusColor="#7a1ab2">
+        <JFXTextField fx:id="taskField" focusColor="#d3180e" layoutX="197.0" layoutY="107.0" prefHeight="51.0" prefWidth="307.0" promptText="Zadanie">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <JFXTextField fx:id="descriptionField" layoutX="197.0" layoutY="182.0" prefHeight="51.0" prefWidth="307.0" promptText="Description">
+        <JFXTextField fx:id="descriptionField" focusColor="#d3180e" layoutX="197.0" layoutY="182.0" prefHeight="51.0" prefWidth="307.0" promptText="Opis">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <JFXButton fx:id="saveTaskButton" layoutX="291.0" layoutY="276.0" prefHeight="51.0" prefWidth="118.0" style="-fx-background-color: #d32f2f;" text="Save Task" textFill="WHITE">
+        <JFXButton fx:id="saveTaskButton" layoutX="291.0" layoutY="276.0" prefHeight="51.0" prefWidth="118.0" style="-fx-background-color: #424242;" text="Zapisz" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font></JFXButton>
@@ -29,13 +29,13 @@
                         <Font size="48.0" />
                     </font>
                 </Label>
-                <Label fx:id="successLabel" layoutX="492.0" layoutY="25.0" text="Task Added Successfully!" textFill="WHITE" visible="false">
+                <Label fx:id="successLabel" layoutX="537.0" layoutY="25.0" prefHeight="26.0" prefWidth="153.0" text="Dodano zadanie!" textFill="WHITE" visible="false">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <JFXButton fx:id="todosButton" layoutX="537.0" layoutY="348.0" prefHeight="34.0" prefWidth="153.0" style="-fx-background-color: #ff6659;" text="My 2Do's (3)" textFill="#434040" visible="false" />
+        <JFXButton fx:id="todosButton" layoutX="537.0" layoutY="348.0" prefHeight="34.0" prefWidth="153.0" style="-fx-background-color: #ff6659;" text="Lista zadań (3)" textFill="#434040" visible="false" />
     </children>
 </AnchorPane>

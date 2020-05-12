@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.User;
@@ -17,6 +18,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignupController {
+
+    @FXML
+    private AnchorPane rootPane;
+
     @FXML
     private ResourceBundle resources;
 
@@ -52,26 +57,18 @@ public class SignupController {
 
         signUpButton.setOnAction(event -> {
             createUser();
-
-            signUpButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
-
+            AnchorPane formPane = null;
             try {
-                loader.load();
+                formPane = FXMLLoader.load(getClass().getResource("/sample/view/login.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
+            rootPane.getChildren().setAll(formPane);
         });
 
     }
 
-    private void createUser(){
+    private void createUser() {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
         String name = signUpFirstName.getText();
@@ -80,10 +77,10 @@ public class SignupController {
         String password = signUpPassword.getText();
         String location = signUpLocation.getText();
 
-        String gender ="";
-        if (signUpCheckBoxFemale.isSelected()){
-            gender = "Female";
-        }else gender = "Male";
+        String gender = "";
+        if (signUpCheckBoxFemale.isSelected()) {
+            gender = "Kobieta";
+        } else gender = "Mężczyzna";
 
         User user = new User(name, lastName, userName, password, location, gender);
 

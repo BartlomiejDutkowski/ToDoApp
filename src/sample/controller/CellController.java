@@ -35,6 +35,7 @@ public class CellController extends JFXListCell<Task> {
     private FXMLLoader fxmlLoader;
 
     private DatabaseHandler databaseHandler;
+
     @FXML
     void initialize() {
 
@@ -44,10 +45,10 @@ public class CellController extends JFXListCell<Task> {
     public void updateItem(Task myTask, boolean empty) {
         super.updateItem(myTask, empty);
 
-        if(empty || myTask == null) {
+        if (empty || myTask == null) {
             setText(null);
             setGraphic(null);
-        }else {
+        } else {
             if (fxmlLoader == null) {
                 fxmlLoader = new FXMLLoader(getClass().getResource("/sample/view/cell.fxml"));
                 fxmlLoader.setController(this);
@@ -68,7 +69,7 @@ public class CellController extends JFXListCell<Task> {
             deleteButton.setOnMouseClicked(event -> {
                 databaseHandler = new DatabaseHandler();
                 try {
-                    databaseHandler.deleteTask(AddItemController.userId,taskId);
+                    databaseHandler.deleteTask(AddItemController.userId, taskId);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 } catch (ClassNotFoundException e) {

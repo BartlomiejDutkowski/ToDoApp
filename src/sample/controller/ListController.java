@@ -45,7 +45,7 @@ public class ListController {
 
 
     private ObservableList<Task> tasks;
-   // private ObservableList<Task> refreshedTasks;
+    // private ObservableList<Task> refreshedTasks;
 
     private DatabaseHandler databaseHandler;
 
@@ -65,19 +65,10 @@ public class ListController {
             task.setDescription(resultSet.getString("description"));
 
             tasks.addAll(task);
-            //System.out.println("User tasks: " + resultSet.getString("task"));
         }
 
         listTask.setItems(tasks);
         listTask.setCellFactory(CellController -> new CellController());
-
-/*        listRefreshButton.setOnMouseClicked(event -> {
-            try {
-                refreshList();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });*/
         listSaveTaskButton.setOnAction(event -> {
             addNewTask();
         });
@@ -85,58 +76,32 @@ public class ListController {
 
     }
 
-   /* public void refreshList() throws SQLException {
+    public void addNewTask() {
 
-        System.out.println("refresh list");
+        if (!listTaskField.getText().equals("") || !listDescriptionField.getText().equals("")) {
 
-        refreshedTasks = FXCollections.observableArrayList();
+            Task myNewTask = new Task();
 
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-        ResultSet resultSet = databaseHandler.getTasksByUser(AddItemController.userId);
+            Calendar calendar = Calendar.getInstance();
 
-        while (resultSet.next()) {
-            Task task = new Task();
-            task.setTaskId(resultSet.getInt("taskid"));
-            task.setTask(resultSet.getString("task"));
-            task.setDatecreated(resultSet.getTimestamp("datecreated"));
-            task.setDescription(resultSet.getString("description"));
+            java.sql.Timestamp timestamp = new java.sql.Timestamp(calendar.getTimeInMillis());
 
-            refreshedTasks.addAll(task);
-            //System.out.println("User tasks: " + resultSet.getString("task"));
-        }
+            myNewTask.setUserId(AddItemController.userId);
+            myNewTask.setTask(listTaskField.getText().trim());
+            myNewTask.setDescription(listDescriptionField.getText().trim());
+            myNewTask.setDatecreated(timestamp);
 
-        listTask.setItems(refreshedTasks);
-        listTask.setCellFactory(CellController -> new CellController());
+            databaseHandler.insertTask(myNewTask);
 
+            listTaskField.setText("");
+            listDescriptionField.setText("");
 
-    }*/
-
-    public void addNewTask(){
-
-            if (!listTaskField.getText().equals("") || !listDescriptionField.getText().equals("")){
-
-                Task myNewTask = new Task();
-
-                Calendar calendar = Calendar.getInstance();
-
-                java.sql.Timestamp timestamp = new java.sql.Timestamp(calendar.getTimeInMillis());
-
-                myNewTask.setUserId(AddItemController.userId);
-                myNewTask.setTask(listTaskField.getText().trim());
-                myNewTask.setDescription(listDescriptionField.getText().trim());
-                myNewTask.setDatecreated(timestamp);
-
-                databaseHandler.insertTask(myNewTask);
-
-                listTaskField.setText("");
-                listDescriptionField.setText("");
-
-                try {
-                    initialize();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+            try {
+                initialize();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
+        }
 
     }
 

@@ -27,5 +27,15 @@
             <Image url="@../assets/add_circle_grey_192x192.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="addListButton" fitHeight="70.0" fitWidth="54.0" layoutX="618.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/icon_tasks.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="notTaskLabel1" alignment="CENTER" layoutX="604.0" layoutY="359.0" prefHeight="27.0" prefWidth="82.0" text="Lista Zadań" textFill="#757474">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
