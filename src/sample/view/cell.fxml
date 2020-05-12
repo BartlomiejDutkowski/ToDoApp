@@ -14,12 +14,12 @@
             <Image url="@../assets/icon_tasks.png" />
          </image>
       </ImageView>
-      <Label fx:id="taskLabel" layoutX="73.0" layoutY="14.0" prefHeight="32.0" prefWidth="255.0" text="Task">
+      <Label fx:id="taskLabel" layoutX="73.0" layoutY="14.0" prefHeight="32.0" prefWidth="255.0" text="Zadanie">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="descriptionLabel" layoutX="73.0" layoutY="48.0" prefHeight="32.0" prefWidth="255.0" text="Description">
+      <Label fx:id="descriptionLabel" layoutX="73.0" layoutY="48.0" prefHeight="32.0" prefWidth="255.0" text="Opis">
          <font>
             <Font size="16.0" />
          </font>

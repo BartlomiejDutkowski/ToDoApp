@@ -87,6 +87,8 @@ public class AddItemFormController {
 
                 todosButton.setOnAction(event1 -> {
 
+                    todosButton.getScene().getWindow().hide();
+
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/sample/view/list.fxml"));
 

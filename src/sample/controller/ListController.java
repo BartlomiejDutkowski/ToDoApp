@@ -40,7 +40,12 @@ public class ListController {
     @FXML
     private JFXButton listSaveTaskButton;
 
+    @FXML
+    private ImageView listRefreshButton;
+
+
     private ObservableList<Task> tasks;
+   // private ObservableList<Task> refreshedTasks;
 
     private DatabaseHandler databaseHandler;
 
@@ -66,12 +71,45 @@ public class ListController {
         listTask.setItems(tasks);
         listTask.setCellFactory(CellController -> new CellController());
 
+/*        listRefreshButton.setOnMouseClicked(event -> {
+            try {
+                refreshList();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });*/
         listSaveTaskButton.setOnAction(event -> {
             addNewTask();
         });
 
 
     }
+
+   /* public void refreshList() throws SQLException {
+
+        System.out.println("refresh list");
+
+        refreshedTasks = FXCollections.observableArrayList();
+
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        ResultSet resultSet = databaseHandler.getTasksByUser(AddItemController.userId);
+
+        while (resultSet.next()) {
+            Task task = new Task();
+            task.setTaskId(resultSet.getInt("taskid"));
+            task.setTask(resultSet.getString("task"));
+            task.setDatecreated(resultSet.getTimestamp("datecreated"));
+            task.setDescription(resultSet.getString("description"));
+
+            refreshedTasks.addAll(task);
+            //System.out.println("User tasks: " + resultSet.getString("task"));
+        }
+
+        listTask.setItems(refreshedTasks);
+        listTask.setCellFactory(CellController -> new CellController());
+
+
+    }*/
 
     public void addNewTask(){
 
